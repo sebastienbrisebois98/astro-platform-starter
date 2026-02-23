@@ -10,6 +10,7 @@ const promos = homepageEntry.data;
 ---
 
 <SalvatoreLayout title="Pizza Salvatoré — Délicieuses pizzas et poutines | Livraison rapide">
+<<<<<<< HEAD
     <style>
         /* ===== NAVBAR ===== */
         .sal-header {
@@ -512,4 +513,467 @@ const promos = homepageEntry.data;
             </div>
         </div>
     </div>
+=======
+
+<style>
+  /* ===== NAVBAR ===== */
+  .sal-header {
+    background-color: #e40f18;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;  /* empêche le débordement */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 62px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+
+  .sal-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none !important;
+  }
+
+  .sal-logo-icon {
+    width: 42px;
+    height: 42px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .sal-logo-text {
+    font-weight: 900;
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+
+  .sal-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    list-style: none;
+  }
+
+  .sal-nav li a {
+    font-weight: 800;
+    font-size: 13px;
+    color: #fff;
+    text-decoration: none !important;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 4px;
+  }
+
+  .sal-nav li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: #fff;
+    transition: width 0.25s ease;
+  }
+  .sal-nav li a:hover::after { width: 100%; }
+  .sal-nav li a:hover { opacity: 0.9; }
+
+  /* ===== HERO STRIP ===== */
+  .hero-strip {
+    background: #fff;
+    padding: 10px 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-strip h2 {
+    color: #e40f18;
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    flex: 0 0 auto;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .hero-btn-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-order {
+    background-color: #e40f18;
+    color: #fff !important;
+    font-weight: 900;
+    font-size: 17px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 7px 32px;
+    text-decoration: none !important;
+    border: 2px solid #e40f18;
+    transition: background 0.2s;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .btn-order:hover { background-color: #c0000f; border-color: #c0000f; }
+
+  .btn-note {
+    font-size: 10px;
+    font-style: italic;
+    color: #777;
+    margin-top: 3px;
+  }
+
+  /* ===== SECTION PROMOS ===== */
+  .promo-section {
+    padding: 12px 1.5rem 24px;
+    background: #fff;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  /* Grille haut : petites + grande */
+  .promo-grid-top {
+    display: grid;
+    grid-template-columns: 1fr 1.9fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .promo-grid-left {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .promo-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+    height: 165px;        /* hauteur fixe comme le site original */
+    display: flex;
+    align-items: flex-end;
+    background: #1a1a1a;
+    cursor: pointer;
+  }
+
+  .promo-card-main {
+    height: 340px;        /* grande bannière GSP */
+  }
+
+  /* Images dans les petites tuiles (texte baked-in dans l'image elle-même) */
+  .promo-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    opacity: 1;
+    transition: transform 0.4s ease;
+  }
+  .promo-card:hover img { transform: scale(1.03); }
+
+  .promo-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .promo-card-content {
+    position: relative;
+    z-index: 2;
+    padding: 12px 14px;
+    width: 100%;
+  }
+
+  .promo-card-label {
+    display: inline-block;
+    background: #fff;
+    color: #222;
+    font-size: 9px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 2px 8px;
+    margin-bottom: 5px;
+    border-radius: 1px;
+  }
+
+  .promo-card-title {
+    font-weight: 900;
+    font-size: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.9);
+  }
+
+  .promo-card-main .promo-card-title {
+    font-size: 46px;
+    letter-spacing: -1px;
+  }
+
+  .promo-card-subtitle {
+    font-weight: 700;
+    font-size: 13px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-top: 5px;
+    line-height: 1.3;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
+  }
+
+  .promo-card-main .promo-card-subtitle {
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .promo-card-limited {
+    font-weight: 900;
+    font-size: 15px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-top: 10px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
+  }
+
+  .btn-commander {
+    display: inline-block;
+    background: #e40f18;
+    color: #fff !important;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    text-decoration: none !important;
+    margin-top: 10px;
+    transition: background 0.2s;
+    border-radius: 1px;
+  }
+  .btn-commander:hover { background: #c0000f; }
+
+  /* Bannières larges */
+  .promo-banner-wide {
+    border-radius: 3px;
+    overflow: hidden;
+    height: 160px;         /* hauteur fixe comme le site original */
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+
+  /* Image de fond des bannières larges (absolue pour ne pas agrandir le conteneur) */
+  .promo-banner-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transition: transform 0.4s ease;
+  }
+  .promo-banner-wide:hover .promo-banner-img { transform: scale(1.03); }
+
+  .promo-banner-content {
+    position: relative;
+    z-index: 2;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+  }
+
+  .promo-banner-left { flex: 1; }
+
+  .promo-banner-title {
+    font-weight: 900;
+    font-size: 30px;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 1;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+  }
+
+  .promo-banner-sub {
+    font-size: 12px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 3px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+  }
+
+  .promo-banner-price {
+    font-weight: 900;
+    font-size: 70px;
+    color: #fff;
+    line-height: 1;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+    flex-shrink: 0;
+  }
+  .promo-banner-price sup { font-size: 28px; vertical-align: super; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .sal-nav { display: none; }
+    .promo-grid-top { grid-template-columns: 1fr; }
+    .promo-card-main { min-height: 200px; }
+    .promo-card-main .promo-card-title { font-size: 30px; }
+    .promo-banner-title { font-size: 20px; }
+    .promo-banner-price { font-size: 44px; }
+    .hero-strip h2 { font-size: 18px; }
+  }
+</style>
+
+<!-- ===== NAVBAR ROUGE ===== -->
+<header class="sal-header">
+  <a href="/" class="sal-logo">
+    <div class="sal-logo-icon">🍕</div>
+    <span class="sal-logo-text">Salvatoré</span>
+  </a>
+  <nav>
+    <ul class="sal-nav">
+      <li><a href="#">Commander</a></li>
+      <li><a href="#">Restaurants</a></li>
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">Promotions</a></li>
+      <li><a href="#">English</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===== HERO : COMMANDEZ MAINTENANT ===== -->
+<div class="hero-strip">
+  <h2>Commandez maintenant</h2>
+  <div class="hero-btns">
+    <div class="hero-btn-wrap">
+      <a href="#" class="btn-order">Livraison</a>
+      <span class="btn-note">Frais de livraison applicables</span>
+    </div>
+    <div class="hero-btn-wrap">
+      <a href="#" class="btn-order">Emporter</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BANNIÈRES PROMO ===== -->
+<div class="promo-section">
+
+  <!-- Rangée du haut: 2 petites + 1 grande -->
+  <div class="promo-grid-top">
+
+    <!-- Gauche: TAO + Mozzarella Frit -->
+    <div class="promo-grid-left">
+
+      <!-- TAO : le texte est dans l'image, on affiche juste l'image + bouton -->
+      <div class="promo-card">
+        {promos.tao.image && (
+          <img src={promos.tao.image} alt={promos.tao.titre.replace(/\n/g, ' ')}
+            onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#b30000,#7a0000)';" />
+        )}
+        <div class="promo-card-content">
+          <a href={promos.tao.btnLien} class="btn-commander">{promos.tao.btnTexte}</a>
+        </div>
+      </div>
+
+      <!-- Mozzarella Frit : le texte est dans l'image, on affiche juste l'image + bouton -->
+      <div class="promo-card">
+        {promos.mozzarella.image && (
+          <img src={promos.mozzarella.image} alt={promos.mozzarella.titre.replace(/\n/g, ' ')}
+            onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#c4420e,#7a2200)';" />
+        )}
+        <div class="promo-card-content">
+          <a href={promos.mozzarella.btnLien} class="btn-commander">{promos.mozzarella.btnTexte}</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Droite: Grande bannière LA GSP -->
+    <div class="promo-card promo-card-main">
+      {promos.gsp.image && (
+        <img src={promos.gsp.image} alt={promos.gsp.titre}
+          onerror="this.style.display='none';" />
+      )}
+      <div class="promo-overlay" style="background: linear-gradient(100deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.6) 55%, rgba(0,0,0,0.15) 100%);"></div>
+      <div class="promo-card-content">
+        <div class="promo-card-title">{promos.gsp.titre}</div>
+        <div class="promo-card-subtitle" set:html={promos.gsp.sousTitre.replace(/\n/g,'<br>')} />
+        <div class="promo-card-limited">{promos.gsp.mention}</div>
+        <a href={promos.gsp.btnLien} class="btn-commander" style="font-size:14px; padding: 8px 20px; margin-top:14px;">{promos.gsp.btnTexte}</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bannière large: Pizzas moyennes 10$ -->
+  <div class="promo-banner-wide" style="background: linear-gradient(to right, #e40f18 35%, #c0000f 100%);">
+    {promos.pizzas10.image && (
+      <img src={promos.pizzas10.image} alt="Pizzas Moyennes" class="promo-banner-img" />
+    )}
+    <div class="promo-banner-content">
+      <a href={promos.pizzas10.btnLien} class="btn-commander" style="border: 2px solid rgba(255,255,255,0.7); background: transparent; padding: 8px 18px; white-space: nowrap; flex-shrink: 0;">Commander</a>
+      <div class="promo-banner-left">
+        <div class="promo-banner-title" set:html={promos.pizzas10.titre.replace(/\n/g,'<br>')} />
+        <div class="promo-banner-sub">{promos.pizzas10.sousTexte}</div>
+      </div>
+      <div class="promo-banner-price">{promos.pizzas10.prix}<sup></sup></div>
+    </div>
+  </div>
+
+  <!-- Bannière large: Concours Voyages 5000$ -->
+  <div class="promo-banner-wide" style="background: linear-gradient(to right, #0a0a0a 40%, #1a2e4a 100%);">
+    {promos.concours.image && (
+      <img src={promos.concours.image} alt="Concours" class="promo-banner-img" />
+    )}
+    <div class="promo-banner-content">
+      <div class="promo-banner-left">
+        <div class="promo-banner-sub" style="font-size:13px; letter-spacing:3px; margin-bottom:2px;"></div>
+        <div class="promo-banner-sub" style="font-size:11px; font-style:italic; margin-bottom:4px;">{promos.concours.mention}</div>
+        <div class="promo-banner-price" style="font-size:52px;">{promos.concours.prix}<sup></sup></div>
+      </div>
+      <div style="flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:8px;">
+        <div style="width:60px; height:60px; border-radius:50%; background: conic-gradient(#00a86b, #3bb0f0, #f0c030, #00a86b); display:flex; align-items:center; justify-content:center;">
+          <span style="color:#fff; font-weight:900; font-size:9px; text-align:center; line-height:1.1;">Voyages<br>à Rabais</span>
+        </div>
+        <a href={promos.concours.btnLien} class="btn-commander" style="font-size:11px; padding:7px 12px; text-align:center; white-space:nowrap;" set:html={promos.concours.btnTexte.replace(/\n/g,'<br>')} />
+      </div>
+    </div>
+  </div>
+
+</div>
+
+>>>>>>> 5efffced2fc2ba4138fa93c1fad8671cef7a5292
 </SalvatoreLayout>
