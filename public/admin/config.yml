@@ -1,0 +1,129 @@
+# ─── Backend ──────────────────────────────────────────────────────────────────
+backend:
+  name: git-gateway
+  branch: main
+
+# ─── Médias ───────────────────────────────────────────────────────────────────
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+# ─── Locale française ─────────────────────────────────────────────────────────
+locale: fr
+
+# ─── Collections ──────────────────────────────────────────────────────────────
+collections:
+
+  # ─── Restaurants ────────────────────────────────────────────────────────────
+  - name: "restaurants"
+    label: "Restaurants"
+    label_singular: "Restaurant"
+    folder: "src/content/restaurants"
+    format: json
+    create: true
+    delete: true
+    slug: "{{fields.ville}}-{{fields.nom}}"
+    identifier_field: nom
+    summary: "{{nom}} — {{ville}}"
+    fields:
+      - { label: "Nom du restaurant", name: nom, widget: string }
+      - { label: "Adresse", name: adresse, widget: string }
+      - { label: "Ville", name: ville, widget: string }
+      - { label: "Province", name: province, widget: string, default: "QC" }
+      - { label: "Code postal", name: codePostal, widget: string }
+      - { label: "Téléphone", name: telephone, widget: string }
+
+      - label: "Heures d'ouverture"
+        name: heures
+        widget: object
+        fields:
+          - { label: "Lundi",    name: lundi,    widget: string, required: false }
+          - { label: "Mardi",    name: mardi,    widget: string, required: false }
+          - { label: "Mercredi", name: mercredi, widget: string, required: false }
+          - { label: "Jeudi",    name: jeudi,    widget: string, required: false }
+          - { label: "Vendredi", name: vendredi, widget: string, required: false }
+          - { label: "Samedi",   name: samedi,   widget: string, required: false }
+          - { label: "Dimanche", name: dimanche, widget: string, required: false }
+
+      - label: "Liens de commande"
+        name: liensCommande
+        widget: object
+        fields:
+          - { label: "Lien livraison (URL)",  name: livraison, widget: string, required: false }
+          - { label: "Lien emporter (URL)",   name: emporter,  widget: string, required: false }
+
+      - label: "Photos"
+        name: photos
+        widget: list
+        required: false
+        field:
+          label: "Photo"
+          name: photo
+          widget: image
+
+      - { label: "Restaurant actif", name: actif, widget: boolean, default: true }
+
+  # ─── Page d'accueil — Tuiles promotionnelles ────────────────────────────────
+  - name: "homepage"
+    label: "Page d'accueil"
+    files:
+      - label: "Tuiles promotionnelles"
+        name: "promos"
+        file: "src/content/homepage/promos.json"
+        format: json
+        fields:
+
+          # ── Tuile 1 : TAO ─────────────────────────────────────────────────
+          - label: "Tuile TAO"
+            name: tao
+            widget: object
+            fields:
+              - { label: "Image (URL)",                     name: image,    widget: image }
+              - { label: "Badge (ex: Nouveau)",             name: label,    widget: string, required: false }
+              - { label: "Titre",                           name: titre,    widget: string }
+              - { label: "Texte du bouton",                 name: btnTexte, widget: string }
+              - { label: "Lien du bouton",                  name: btnLien,  widget: string }
+
+          # ── Tuile 2 : Mozzarella Frit ─────────────────────────────────────
+          - label: "Tuile Mozzarella Frit"
+            name: mozzarella
+            widget: object
+            fields:
+              - { label: "Image (URL)",                     name: image,    widget: image }
+              - { label: "Badge (ex: Nouveau)",             name: label,    widget: string, required: false }
+              - { label: "Titre",                           name: titre,    widget: string }
+              - { label: "Texte du bouton",                 name: btnTexte, widget: string }
+              - { label: "Lien du bouton",                  name: btnLien,  widget: string }
+
+          # ── Tuile 3 : Grande bannière GSP ────────────────────────────────
+          - label: "Grande bannière GSP"
+            name: gsp
+            widget: object
+            fields:
+              - { label: "Image de fond (URL)",             name: image,     widget: image }
+              - { label: "Titre",                           name: titre,     widget: string }
+              - { label: "Sous-titre (Entrée = nouvelle ligne)", name: sousTitre, widget: text }
+              - { label: "Mention (ex: Pour un temps limité)", name: mention, widget: string, required: false }
+              - { label: "Texte du bouton",                 name: btnTexte,  widget: string }
+              - { label: "Lien du bouton",                  name: btnLien,   widget: string }
+
+          # ── Tuile 4 : Bannière Pizzas Moyennes ───────────────────────────
+          - label: "Bannière Pizzas Moyennes"
+            name: pizzas10
+            widget: object
+            fields:
+              - { label: "Image de fond (URL)",             name: image,    widget: image, required: false }
+              - { label: "Titre",                           name: titre,    widget: string }
+              - { label: "Prix affiché (ex: 10$)",          name: prix,     widget: string, required: false }
+              - { label: "Sous-texte",                      name: sousTexte, widget: string }
+              - { label: "Lien du bouton",                  name: btnLien,  widget: string }
+
+          # ── Tuile 5 : Bannière Concours Voyages ──────────────────────────
+          - label: "Bannière Concours Voyages"
+            name: concours
+            widget: object
+            fields:
+              - { label: "Image de fond (URL)",             name: image,    widget: image, required: false }
+              - { label: "Mention",                         name: mention,  widget: string, required: false }
+              - { label: "Prix affiché (ex: 5000$)",        name: prix,     widget: string, required: false }
+              - { label: "Texte du bouton (Entrée = nouvelle ligne)", name: btnTexte, widget: text }
+              - { label: "Lien du bouton",                  name: btnLien,  widget: string }
