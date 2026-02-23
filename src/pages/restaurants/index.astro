@@ -1,0 +1,188 @@
+---
+export const prerender = true;
+
+import SalvatoreLayout from '../../layouts/SalvatoreLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allRestaurants = await getCollection('restaurants');
+const restaurants = allRestaurants
+    .filter(r => r.data.actif)
+    .sort((a, b) => {
+        const cityCompare = a.data.ville.localeCompare(b.data.ville, 'fr');
+        if (cityCompare !== 0) return cityCompare;
+        return a.data.nom.localeCompare(b.data.nom, 'fr');
+    });
+
+const jours = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'] as const;
+const joursLabels: Record<typeof jours[number], string> = {
+    lundi: 'Lun', mardi: 'Mar', mercredi: 'Mer',
+    jeudi: 'Jeu', vendredi: 'Ven', samedi: 'Sam', dimanche: 'Dim'
+};
+---
+
+<SalvatoreLayout title="Nos Restaurants — Pizza Salvatoré">
+
+<style>
+    .resto-header {
+        background-color: #e40f18;
+        padding: 1.5rem 2rem;
+        text-align: center;
+    }
+    .resto-header h1 {
+        color: #fff;
+        font-weight: 900;
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0;
+    }
+    .resto-main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+    }
+    .resto-count {
+        font-size: 0.9rem;
+        color: #777;
+        margin-bottom: 1.5rem;
+    }
+    .resto-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+    .resto-card {
+        border: 1px solid #eee;
+        border-radius: 6px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        transition: box-shadow 0.2s;
+    }
+    .resto-card:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    .resto-card-photo {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+    }
+    .resto-card-body {
+        padding: 1.25rem;
+    }
+    .resto-card-nom {
+        font-weight: 900;
+        font-size: 1.05rem;
+        text-transform: uppercase;
+        margin-bottom: 0.35rem;
+    }
+    .resto-card-adresse {
+        font-size: 0.875rem;
+        color: #555;
+        margin-bottom: 0.25rem;
+    }
+    .resto-card-tel {
+        font-size: 0.875rem;
+        margin-bottom: 0.75rem;
+    }
+    .resto-card-tel a {
+        color: #e40f18;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    .resto-card-heures {
+        font-size: 0.8rem;
+        color: #666;
+        margin-bottom: 0.9rem;
+        display: grid;
+        grid-template-columns: 3rem 1fr;
+        gap: 2px 6px;
+    }
+    .resto-card-heures .jour { font-weight: 700; color: #333; }
+    .resto-btns {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    .btn-livraison {
+        background: #e40f18;
+        color: #fff;
+        font-weight: 800;
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        text-decoration: none;
+        border-radius: 2px;
+        transition: background 0.2s;
+    }
+    .btn-livraison:hover { background: #c0000f; }
+    .btn-emporter {
+        border: 2px solid #e40f18;
+        color: #e40f18;
+        font-weight: 800;
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 4px 14px;
+        text-decoration: none;
+        border-radius: 2px;
+        transition: background 0.2s, color 0.2s;
+    }
+    .btn-emporter:hover { background: #e40f18; color: #fff; }
+    @media (max-width: 600px) {
+        .resto-grid { grid-template-columns: 1fr; }
+    }
+</style>
+
+<header class="resto-header">
+    <h1>Nos Restaurants</h1>
+</header>
+
+<main class="resto-main">
+    <p class="resto-count">{restaurants.length} restaurant{restaurants.length > 1 ? 's' : ''}</p>
+
+    <div class="resto-grid">
+        {restaurants.map(resto => {
+            const r = resto.data;
+            return (
+                <article class="resto-card">
+                    {r.photos.length > 0 && (
+                        <img
+                            src={r.photos[0]}
+                            alt={r.nom}
+                            class="resto-card-photo"
+                            onerror="this.style.display='none'"
+                        />
+                    )}
+                    <div class="resto-card-body">
+                        <div class="resto-card-nom">{r.nom}</div>
+                        <div class="resto-card-adresse">{r.adresse}</div>
+                        <div class="resto-card-adresse">{r.ville} {r.province} {r.codePostal}</div>
+                        <div class="resto-card-tel">
+                            <a href={`tel:${r.telephone.replace(/\D/g,'')}`}>{r.telephone}</a>
+                        </div>
+                        <div class="resto-card-heures">
+                            {jours.map(jour => r.heures[jour] ? (
+                                <>
+                                    <span class="jour">{joursLabels[jour]}</span>
+                                    <span>{r.heures[jour]}</span>
+                                </>
+                            ) : null)}
+                        </div>
+                        <div class="resto-btns">
+                            {r.liensCommande.livraison && (
+                                <a href={r.liensCommande.livraison} class="btn-livraison">Livraison</a>
+                            )}
+                            {r.liensCommande.emporter && (
+                                <a href={r.liensCommande.emporter} class="btn-emporter">Emporter</a>
+                            )}
+                        </div>
+                    </div>
+                </article>
+            );
+        })}
+    </div>
+</main>
+
+</SalvatoreLayout>

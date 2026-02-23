@@ -1,0 +1,25 @@
+{
+  "nom": "Salvatoré Verdun",
+  "adresse": "4201 Boulevard LaSalle",
+  "ville": "Verdun",
+  "province": "QC",
+  "codePostal": "H4G 2A3",
+  "telephone": "514-765-0000",
+  "heures": {
+    "lundi":    "11h00 – 22h00",
+    "mardi":    "11h00 – 22h00",
+    "mercredi": "11h00 – 22h00",
+    "jeudi":    "11h00 – 22h00",
+    "vendredi": "11h00 – 23h00",
+    "samedi":   "11h00 – 23h00",
+    "dimanche": "11h00 – 22h00"
+  },
+  "liensCommande": {
+    "livraison": "https://order.salvatore.com/livraison?loc=verdun",
+    "emporter":  "https://order.salvatore.com/emporter?loc=verdun"
+  },
+  "photos": [
+    "https://salvatore.com/asset/cms/restaurants/verdun-ext.webp"
+  ],
+  "actif": true
+}

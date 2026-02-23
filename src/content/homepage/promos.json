@@ -1,0 +1,38 @@
+{
+  "tao": {
+    "image": "https://salvatore.com/asset/cms/tao-fr.webp",
+    "label": "",
+    "titre": "Notre\nLégendaire\nTAO",
+    "btnTexte": "Commander",
+    "btnLien": "#"
+  },
+  "mozzarella": {
+    "image": "https://salvatore.com/asset/cms/fr-(1).webp",
+    "label": "Nouveau",
+    "titre": "Mozzarella\nFrit",
+    "btnTexte": "Commander",
+    "btnLien": "#"
+  },
+  "gsp": {
+    "image": "https://salvatore.com/asset/cms/Site-web-FR.webp",
+    "titre": "LA GSP",
+    "sousTitre": "Découvrez notre\nnouvelle pizza\nsignée Georges St-Pierre.",
+    "mention": "Pour un temps limité",
+    "btnTexte": "Commander",
+    "btnLien": "#"
+  },
+  "pizzas10": {
+    "image": "https://salvatore.com/asset/cms/pizzas-fr.webp",
+    "titre": "Pizzas\nMoyennes",
+    "prix": "",
+    "sousTexte": "En ligne et sur notre application mobile",
+    "btnLien": "#"
+  },
+  "concours": {
+    "image": "https://salvatore.com/asset/cms/voyages-a-rabais-mobile-fr1.webp",
+    "mention": "",
+    "prix": "",
+    "btnTexte": "Voir les offres\nvoyage",
+    "btnLien": "#"
+  }
+}
